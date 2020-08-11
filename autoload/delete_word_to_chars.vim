@@ -1,9 +1,14 @@
 function! delete_word_to_chars#delete_word(keywords, motion) abort
   let l:isk_save = &l:iskeyword
-  setlocal iskeyword-=a:keywords
-  execute "setlocal iskeyword=" . a:keywords
+  for l:keyword in split(a:keywords, '\zs')
+    execute "setlocal iskeyword-=" . l:keyword
+  endfor
   try
-    execute "normal! " . a:motion
+    if col('.') == col('$') - 1
+      exec "normal! a\<C-w>\<right>"
+    else
+      exec "normal! i\<C-w>\<right>"
+    end
   catch
     return 'echoerr '.string(v:exception)
   finally
