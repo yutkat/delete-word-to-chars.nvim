@@ -1,16 +1,19 @@
-function! delete_word_to_chars#delete_word(keywords, motion) abort
+function! delete_word_to_chars#delete_word(keywords) abort
   let l:isk_save = &l:iskeyword
   for l:keyword in split(a:keywords, '\zs')
     execute "setlocal iskeyword-=" . l:keyword
   endfor
   try
+    echomsg col('.')
     if col('.') == col('$') - 1
-      exec "normal! a\<C-w>\<right>"
+      normal! dvb
+      startinsert!
     else
-      exec "normal! i\<C-w>\<right>"
+      normal! dvb
+      startinsert
     end
   catch
-    return 'echoerr '.string(v:exception)
+    return 'delete-word-to-chars.vim: '.string(v:exception)
   finally
     let &l:iskeyword = l:isk_save
   endtry
