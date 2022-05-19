@@ -14,7 +14,7 @@ function M.setup(user_conf)
 			vim.opt_local.iskeyword:append(value)
 		end
 
-		vim.cmd([[normal! dvb]])
+		vim.cmd([[normal! db]])
 		if vim.fn.col(".") == vim.fn.col("$") - 1 then
 			vim.cmd([[startinsert!]])
 		else
