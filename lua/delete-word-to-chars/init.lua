@@ -15,7 +15,7 @@ function M.setup(user_conf)
 		end
 
 		vim.cmd([[normal! db]])
-		if vim.fn.col(".") == vim.fn.col("$") - 1 then
+		if vim.fn.col(".") >= vim.fn.col("$") - 1 then
 			vim.cmd([[startinsert!]])
 		else
 			vim.cmd([[startinsert]])
