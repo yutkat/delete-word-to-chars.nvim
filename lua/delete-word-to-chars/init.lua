@@ -13,16 +13,15 @@ function M.setup(user_conf)
 		for index, value in ipairs(c.add_keyword) do
 			vim.opt_local.iskeyword:append(value)
 		end
-
-		vim.cmd([[normal! db]])
-		if vim.fn.col(".") >= vim.fn.col("$") - 1 then
-			vim.cmd([[startinsert!]])
+		local r
+		if vim.fn.col(".") > vim.fn.col("$") - 1 then
+			r = "<C-o>dvb"
 		else
-			vim.cmd([[startinsert]])
+			r = "<C-o>db"
 		end
-
-		vim.bo.iskeyword = isk_save
-	end, { noremap = true, expr = false, silent = true })
+		r = r .. "<C-\\><C-o>:<C-u>lua vim.bo.iskeyword=" .. "'" .. isk_save .. "'<CR>"
+		return r
+	end, { noremap = true, expr = true, silent = false })
 end
 
 return M
