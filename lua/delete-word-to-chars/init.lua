@@ -16,6 +16,8 @@ function M.setup(user_conf)
 		local r
 		if vim.fn.col(".") > vim.fn.col("$") - 1 then
 			r = "<C-o>dvb"
+		elseif string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") then
+			r = "<C-o>d0"
 		else
 			r = "<C-o>db"
 		end
