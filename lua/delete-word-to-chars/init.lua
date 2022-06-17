@@ -15,11 +15,11 @@ function M.setup(user_conf)
 		end
 		local r
 		if vim.fn.col(".") > vim.fn.col("$") - 1 then
-			r = "<C-o>dvb"
+			r = '<C-o>"_dvb'
 		elseif string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") then
-			r = "<C-o>d0"
+			r = '<C-o>"_d0'
 		else
-			r = "<C-o>db"
+			r = '<C-o>"_db'
 		end
 		r = r .. "<C-\\><C-o>:<C-u>lua vim.bo.iskeyword=" .. "'" .. isk_save .. "'<CR>"
 		return r
