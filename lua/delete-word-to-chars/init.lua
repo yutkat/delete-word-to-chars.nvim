@@ -23,7 +23,7 @@ function M.setup(user_conf)
 		end
 		r = r .. "<C-\\><C-o>:<C-u>lua vim.bo.iskeyword=" .. "'" .. isk_save .. "'<CR>"
 		return r
-	end, { noremap = true, expr = true, silent = false })
+	end, { noremap = true, expr = true, silent = true })
 end
 
 return M
