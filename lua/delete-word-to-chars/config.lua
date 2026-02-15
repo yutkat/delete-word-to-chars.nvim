@@ -12,7 +12,7 @@ function M.set(user_conf)
 	if type(user_conf) ~= "table" then
 		error("Configuration error")
 	end
-	config = vim.tbl_deep_extend("force", config, user_conf or {})
+	config = vim.tbl_deep_extend("force", config, user_conf)
 	return config
 end
 
